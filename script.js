@@ -31,13 +31,11 @@ typeInput.addEventListener("input", () => {
     } else if(characterSpan.innerText == arrayValue[index]) {
       characterSpan.classList.add("correct");
       characterSpan.classList.remove("incorrect");
-      typeSound.volume = 1;
       typeSound.play();
       typeSound.currentTime = 0;
     } else {
-      characterSpan.classList.remove("correct");
       characterSpan.classList.add("incorrect");
-      wrongSound.volume = 0.8;
+      characterSpan.classList.remove("correct");
       wrongSound.play();
       wrongSound.currentTime = 0;
       typeInput.value = reValue;
@@ -50,7 +48,6 @@ typeInput.addEventListener("input", () => {
 
   //クリアする
   if (correct == true){
-    typeSound.volume = 1;
     correctSound.play();
     correctSound.currentTime = 0;
     typeInput.readOnly = true;
