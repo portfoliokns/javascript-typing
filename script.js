@@ -91,8 +91,9 @@ function StartTimer() {
   timer.innerText = originTime;
   startTime = new Date();
   timerInterval = setInterval(() => {
-    timer.innerText = originTime - getTimerTime();
-    if (timer.innerHTML <= 0) TimeUp();
+    nowTime = originTime - getTimerTime()
+    timer.innerText = nowTime;
+    if (nowTime <= 0) TimeUp();
   }, 1000);
 }
 
