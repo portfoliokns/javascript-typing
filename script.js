@@ -30,7 +30,7 @@ typeInput.addEventListener("input", () => {
       characterSpan.classList.add("incorrect");
       wrongSound.volume = 0.9;
       wrongSound.play();
-      typeSound.currentTime = 0;
+      wrongSound.currentTime = 0;
       correct = false;
       typeInput.value = reValue;
     }
