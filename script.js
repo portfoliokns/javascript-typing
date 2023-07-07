@@ -46,14 +46,14 @@ typeInput.addEventListener("input", () => {
     reValue += arrayValue[index]
   })
 
-  //クリアする
+  //ゲームにクリアした場合、ゲームを終了する
   if (correct == true){
+    clearInterval(timerInterval);
     correctSound.play();
     correctSound.currentTime = 0;
     typeInput.readOnly = true;
     startButton.focus();
     startButton.innerText = "もう一度挑戦する";
-    clearInterval(timerInterval);
   }
 
 });
@@ -85,7 +85,7 @@ async function RenderNextSentence() {
 
 //タイマーのカウントを開始する
 let startTime;
-let originTime = 40;
+let originTime = 30;
 let timerInterval;
 function StartTimer() {
   timer.innerText = originTime;
@@ -103,11 +103,11 @@ function getTimerTime() {
 
 //タイムアップ時の処理を行う
 function TimeUp() {
+  clearInterval(timerInterval);
   typeInput.readOnly = true;
   startButton.focus();
   timer.innerText = "Game Over !!";
   startButton.innerText = "もう一度挑戦する";
-  clearInterval(timerInterval);
 };
 
 //タイピングゲームを開始する
