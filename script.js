@@ -51,6 +51,7 @@ typeInput.addEventListener("input", () => {
     clearInterval(timerInterval);
     correctSound.play();
     correctSound.currentTime = 0;
+    timer.innerText = "クリア !!";
     typeInput.readOnly = true;
     startButton.focus();
     startButton.innerText = "もう一度挑戦する";
@@ -88,11 +89,11 @@ let startTime;
 let originTime = 30;
 let timerInterval;
 function StartTimer() {
-  timer.innerText = originTime;
+  timer.innerText = "残り" + originTime + "秒";
   startTime = new Date();
   timerInterval = setInterval(() => {
     nowTime = originTime - getTimerTime()
-    timer.innerText = nowTime;
+    timer.innerText = "残り" + nowTime + "秒";
     if (nowTime <= 0) TimeUp();
   }, 1000);
 }
@@ -105,9 +106,9 @@ function getTimerTime() {
 //タイムアップ時の処理を行う
 function TimeUp() {
   clearInterval(timerInterval);
+  timer.innerText = "Game Over !!";
   typeInput.readOnly = true;
   startButton.focus();
-  timer.innerText = "Game Over !!";
   startButton.innerText = "もう一度挑戦する";
 };
 
