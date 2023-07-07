@@ -113,6 +113,7 @@ function TimeUp() {
 
 //タイピングゲームを開始する
 startButton.addEventListener("click", () =>{
+  clearInterval(timerInterval);
   typeInput.readOnly = false;
   typeInput.focus();
   startButton.innerText = "リスタートする";
