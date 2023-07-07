@@ -10,7 +10,16 @@
   <div class="timer" id="timer">0</div>
   <div class="container">
     <div class="type-display" id="typeDisplay"></div>
-    <textarea class="type-Input" id="typeInput" autofocus></textarea>
+    <textarea
+      class="type-Input"
+      id="typeInput"
+      autofocus
+      onpaste="return false;"
+      oncut="return false;"
+      oncopy="return false;"
+      ondrag="return false;"
+      ondrop="return false;">
+    </textarea>
   </div>
 
   <script src="script.js"></script>
