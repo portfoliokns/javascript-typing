@@ -2,6 +2,7 @@ const Random_Sentence_Url_Api = "https://api.quotable.io/random";
 const typeDisplay = document.getElementById("typeDisplay");
 const typeInput = document.getElementById("typeInput");
 const timer = document.getElementById("timer");
+const startButton = document.getElementById("starButton");
 const typeSound = new Audio("./audio/audio_typing-sound.mp3");
 const wrongSound = new Audio("./audio/audio_wrong.mp3");
 const correctSound = new Audio("./audio/audio_correct.mp3");
@@ -47,12 +48,15 @@ typeInput.addEventListener("input", () => {
     reValue += arrayValue[index]
   })
 
-  //次のテキストを表示する
+  //クリアする
   if (correct == true){
     typeSound.volume = 1;
     correctSound.play();
     correctSound.currentTime = 0;
-    RenderNextSentence();
+    typeInput.readOnly = true;
+    startButton.focus();
+    startButton.innerText = "もう一度挑戦する";
+    clearInterval(timerInterval);
   }
 
 });
@@ -84,11 +88,12 @@ async function RenderNextSentence() {
 
 //タイマーのカウントを開始する
 let startTime;
-let originTime = 30;
+let originTime = 40;
+let timerInterval;
 function StartTimer() {
   timer.innerText = originTime;
   startTime = new Date();
-  setInterval(() => {
+  timerInterval = setInterval(() => {
     timer.innerText = originTime - getTimerTime();
     if (timer.innerHTML <= 0) TimeUp();
   }, 1000);
@@ -101,8 +106,17 @@ function getTimerTime() {
 
 //タイムアップ時の処理を行う
 function TimeUp() {
-  RenderNextSentence();
+  typeInput.readOnly = true;
+  startButton.focus();
+  timer.innerText = "Game Over !!";
+  startButton.innerText = "もう一度挑戦する";
+  clearInterval(timerInterval);
 };
 
 //タイピングゲームを開始する
-RenderNextSentence();
+startButton.addEventListener("click", () =>{
+  typeInput.readOnly = false;
+  typeInput.focus();
+  startButton.innerText = "リスタートする";
+  RenderNextSentence();
+})
