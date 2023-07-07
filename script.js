@@ -6,6 +6,15 @@ const typeSound = new Audio("./audio/audio_typing-sound.mp3");
 const wrongSound = new Audio("./audio/audio_wrong.mp3");
 const correctSound = new Audio("./audio/audio_correct.mp3");
 
+// 入力キーの制御
+typeInput.addEventListener("keydown", function(event) {
+  const eventKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Backspace"];
+  if (eventKeys.includes(event.key)) {
+    console.log("aaa");
+    event.preventDefault();
+  }
+})
+
 // inputTextの入力値を判定する
 typeInput.addEventListener("input", () => {
 
