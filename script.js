@@ -11,6 +11,7 @@ typeInput.addEventListener("input", () => {
 
   const sentenceArray = Type_Display.querySelectorAll("span");
   const arrayValue = typeInput.value.split("");
+  let reValue = "";
   let correct = true;
 
   sentenceArray.forEach((characterSpan, index) => {
@@ -31,7 +32,11 @@ typeInput.addEventListener("input", () => {
       wrongSound.play();
       typeSound.currentTime = 0;
       correct = false;
+      typeInput.value = reValue;
     }
+
+    //復元用の文字列を形成
+    reValue += arrayValue[index]
   })
 
   //次のテキストを表示する
