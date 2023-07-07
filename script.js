@@ -10,7 +10,6 @@ const correctSound = new Audio("./audio/audio_correct.mp3");
 typeInput.addEventListener("keydown", function(event) {
   const eventKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Backspace"];
   if (eventKeys.includes(event.key)) {
-    console.log("aaa");
     event.preventDefault();
   }
 })
@@ -89,7 +88,6 @@ let originTime = 30;
 function StartTimer() {
   timer.innerText = originTime;
   startTime = new Date();
-  console.log(startTime);
   setInterval(() => {
     timer.innerText = originTime - getTimerTime();
     if (timer.innerHTML <= 0) TimeUp();
