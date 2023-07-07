@@ -1,5 +1,5 @@
 const Random_Sentence_Url_Api = "https://api.quotable.io/random";
-const Type_Display = document.getElementById("typeDisplay");
+const typeDisplay = document.getElementById("typeDisplay");
 const typeInput = document.getElementById("typeInput");
 const timer = document.getElementById("timer");
 const typeSound = new Audio("./audio/audio_typing-sound.mp3");
@@ -9,7 +9,7 @@ const correctSound = new Audio("./audio/audio_correct.mp3");
 // inputTextの入力値を判定する
 typeInput.addEventListener("input", () => {
 
-  const sentenceArray = Type_Display.querySelectorAll("span");
+  const sentenceArray = typeDisplay.querySelectorAll("span");
   const arrayValue = typeInput.value.split("");
   let reValue = "";
   let correct = true;
@@ -28,14 +28,14 @@ typeInput.addEventListener("input", () => {
     } else {
       characterSpan.classList.remove("correct");
       characterSpan.classList.add("incorrect");
-      wrongSound.volume = 0.9;
+      wrongSound.volume = 0.8;
       wrongSound.play();
       wrongSound.currentTime = 0;
-      correct = false;
       typeInput.value = reValue;
+      correct = false;
     }
 
-    //復元用の文字列を形成
+    //復元用の文字列を作成
     reValue += arrayValue[index]
   })
 
@@ -59,14 +59,14 @@ function GetRandomSentence() {
 //（非同期処理）ランダムな文字列を取得して、画面に表示する
 async function RenderNextSentence() {
   const sentence = await GetRandomSentence();
-  Type_Display.innerText = "";
+  typeDisplay.innerText = "";
 
   // 文章を1文字ずつ分解して、spanタグを生成する
   let oneText = sentence.split("");
   oneText.forEach((character) => {
     const characterSpan = document.createElement("span");
     characterSpan.innerText = character;
-    Type_Display.appendChild(characterSpan);
+    typeDisplay.appendChild(characterSpan);
   });
 
   // リセットする
